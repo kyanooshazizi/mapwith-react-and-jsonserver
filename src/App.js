@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
 
-function App() {
+const App = (props) => {
+  const [data,setData]=useState([]);
+  useEffect(()=>{fetch("http://localhost:3000/postsee").then(res=>res.json()).then(res1=>{
+    setData(...res1);
+  console.log(data);
+  })},[])
+    
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <div>{data.length==0?<p>salam</p>:data.title}</div>
   );
-}
+};
 
 export default App;
